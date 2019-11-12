@@ -1,0 +1,9 @@
+<template>
+    <lightning-datatable 
+            key-field="id" 
+            data={productsData} 
+            columns={columns}>
+    </lightning-datatable>
+        <lightning-button variant="brand" label="Add" title="Add Building Options" onclick={handleSelected}
+        class="slds-m-left_x-small" style="float: right;"></lightning-button>   
+</template>

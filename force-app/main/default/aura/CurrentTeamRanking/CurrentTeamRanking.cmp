@@ -1,0 +1,39 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForAllPageTypes" 
+                controller="CurrentTeamRankingCntr"
+                access="global">
+    
+    <aura:attribute name="confList" type="List" />
+    <aura:attribute name="divList" type="List" />
+    <aura:attribute name="teamColumns" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <div class="slds-tabs--scoped">
+        <ul class="slds-tabs--scoped__nav" role="tablist">
+            <li aura:id="confId" class="slds-tabs--scoped__item slds-text-title--caps slds-active customClassForTab" title="Conference" role="presentation" >
+                <a class="slds-tabs--scoped__link" href="javascript:void(0);" onclick="{!c.init}" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-default-1" id="conference_table">Conference Standings</a>
+            </li>
+            <li aura:id="divId" class="slds-tabs--scoped__item slds-text-title--caps customClassForTab" title="Division" role="presentation">
+                <a class="slds-tabs--scoped__link" href="javascript:void(0);" onclick="{!c.loadDivTeams}" role="tab" tabindex="-1" aria-selected="true" aria-controls="tab-default-2" id="division_table">Division Standings</a>
+            </li>
+        </ul>
+        <div name="tabdataName" aura:id="confDataId" id="tab-default-1" class="slds-tabs--scoped__content slds-show customClassForTabData" role="tabpanel" aria-labelledby="conference_table">
+            <div style="height:450px">
+                <lightning:datatable
+                                     columns="{!v.teamColumns}"
+                                     data="{!v.confList}"
+                                     keyField="Id"
+                                     hideCheckboxColumn="true"
+                                     />
+            </div>
+        </div>
+        <div name="tabdataName" aura:id="divDataId" id="tab-default-2" class="slds-tabs--scoped__content slds-hide customClassForTabData" role="tabpanel" aria-labelledby="division_table">
+            <div style="height:450px">
+                <lightning:datatable
+                                     columns="{!v.teamColumns}"
+                                     data="{!v.divList}"
+                                     keyField="Id"
+                                     hideCheckboxColumn="true"
+                                     />
+            </div>
+        </div>
+    </div>         
+</aura:component>

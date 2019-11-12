@@ -1,0 +1,65 @@
+<aura:component controller="BuildingSelectOptionCntr" 
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickActionWithoutHeader" 
+                access="global" >
+    <aura:attribute name="productsList" type="list" />
+    <aura:attribute name="isCoFinanceChecked" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div>
+        <h2 id="modal-heading-01" class="slds-text-heading_medium" style="text-align:center;">Select Options</h2>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="margin-top:10px; ">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th>           
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Product Name">Product Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Co-finance allowed">Co-finance allowed</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Building type supported">Building type supported</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Apply Co-finance">Apply Co-finance</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.productsList}" var="prod">
+                    <tr class="slds-hint-parent">
+                        <td>
+                            <label class="slds-checkbox">
+                                <ui:inputCheckbox aura:id="checkProduct" value="" text="{!prod.Id}"/>
+                                <span class="slds-checkbox--faux" />
+                                <span class="slds-form-element__label"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title="{!prod.Name}">{!prod.Name}</div>
+                        </td>
+                        <td>
+                            <label class="slds-checkbox">
+                                <ui:outputCheckbox aura:id="coFinance" value="{!prod.Co_finance_allowed__c}"/>
+                            </label>
+                        </td>
+                        <td scope="row">
+                            <div class="slds-truncate" title="{!prod.Building_type_supported__c}">{!prod.Building_type_supported__c}</div>
+                        </td>
+                        <td>
+                            <label class="slds-checkbox">
+                                <ui:inputCheckbox aura:id="isCoFinanceChecked" value="" text="" disabled="{!!prod.Co_finance_allowed__c}" />
+                                <span class="slds-checkbox--faux" />
+                                <span class="slds-form-element__label"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table> 
+    </div>
+    <div class="slds-clearfix" style="margin-top: 10px;">
+        <div class="slds-float_left"><lightning:button label="Add" class="slds-button slds-button_brand" onclick="{!c.handleSelectedProducts}" /></div>
+        <div class="slds-float_right"><lightning:button label="Cancel" class="slds-button slds-button_neutral" onclick="{!c.cancel}" /></div>
+    </div>
+</aura:component>

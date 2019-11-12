@@ -1,0 +1,10 @@
+<apex:page standardController="Account" extensions="CurrentTeamRankingCntr">
+     <apex:pageBlock >
+        <apex:pageBlockTable value="{!confTeams}" id="accountId" var="accItem">
+            <apex:column headerValue="Team" value="{!accItem.Name}"/>
+            <apex:column headerValue="W" value="{!accItem.W__c}"/>
+            <apex:column headerValue="L" value="{!accItem.L__c}"/>
+            <apex:column headerValue="PCT" value="{!accItem.PCT__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
