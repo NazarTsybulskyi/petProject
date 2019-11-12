@@ -14,5 +14,6 @@
         markersTitle="{!v.markersTitle}"
         zoomLevel="{!v.zoomLevel}"
         showFooter="{!v.showFooter}"
+        center="{!v.center}"
     />
 </aura:component>
