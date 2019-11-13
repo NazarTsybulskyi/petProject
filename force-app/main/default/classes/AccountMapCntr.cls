@@ -2,11 +2,11 @@ public class AccountMapCntr {
 
     @AuraEnabled
     public static List<Location> getAllAccountLocations(){
-        List<Account> allTeamAccounts = [SELECT Name, GeoLocation__Latitude__s, GeoLocation__Longitude__s,
+        List<Account> allTeamAccounts = [SELECT Name, GeoLocation__c, GeoLocation__Latitude__s, GeoLocation__Longitude__s,
                                         ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode, ShippingCountry
                                         FROM Account
-                                        WHERE Name LIKE '%Lakers'
-                                        AND RecordType.DeveloperName = 'Team'];
+                                        WHERE RecordType.DeveloperName = 'Team'
+                                        AND GeoLocation__Latitude__s != null];
         List<Location> allAccountLocations = new List<Location>();
         for (Account aRecord : allTeamAccounts) {
             GeoLocation geoLocAccDetails = new GeoLocation();
