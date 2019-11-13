@@ -8,7 +8,7 @@
 				//component.set("v.center", )
 				console.log('current zoom level -->>> ' + component.getZoom());
             } else {
-			    console.log("Response state: " + response.getState());
+				console.log("Response state: " + response.getState() + ': ' + response.getMessage());
 			}
         });
         $A.enqueueAction(getAllAccountLocationsAction);

@@ -2,9 +2,11 @@ public class AccountMapCntr {
 
     @AuraEnabled
     public static List<Location> getAllAccountLocations(){
-        List<Account> allTeamAccounts = [SELECT Name, ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode, ShippingCountry
+        List<Account> allTeamAccounts = [SELECT Name, GeoLocation__Latitude__s, GeoLocation__Longitude__s,
+                                        ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode, ShippingCountry
                                         FROM Account
-                                        WHERE RecordType.DeveloperName = 'Team'];
+                                        WHERE Name LIKE '%Lakers'
+                                        AND RecordType.DeveloperName = 'Team'];
         List<Location> allAccountLocations = new List<Location>();
         for (Account aRecord : allTeamAccounts) {
             GeoLocation geoLocAccDetails = new GeoLocation();
@@ -13,12 +15,15 @@ public class AccountMapCntr {
             geoLocAccDetails.State = aRecord.ShippingState;
             geoLocAccDetails.PostalCode = aRecord.ShippingPostalCode;
             geoLocAccDetails.Country = aRecord.ShippingCountry;
+            geoLocAccDetails.Latitude = aRecord.GeoLocation__Latitude__s;
+            geoLocAccDetails.Longitude = aRecord.GeoLocation__Longitude__s;
             Location locDetails = new Location();
             locDetails.icon = 'utility:activity';
             locDetails.title = aRecord.Name;
             locDetails.location = geoLocAccDetails;
             allAccountLocations.add(locDetails);
         }
+        System.debug('location list: ' + allAccountLocations);
         return allAccountLocations;
     
     }
@@ -39,7 +44,12 @@ public class AccountMapCntr {
         @AuraEnabled
         public String Country{get;set;}
 
-        //add latitude/longitude to avoid limits and show all markers at a time
+        @AuraEnabled
+        public Decimal Latitude{get; set;}
+        
+        @AuraEnabled
+        public Decimal Longitude{get; set;}
+        
     }
 
     public class Location{
