@@ -4,8 +4,7 @@
 		getAllAccountLocationsAction.setCallback(this, function(response){
             if (response.getState() == "SUCCESS"){
 				component.set("v.mapMarkers", response.getReturnValue()); 
-				component.set("v.zoomLevel", 4);
-				console.log('current zoom level -->>> ' + component.getZoom());
+				component.set("v.zoomLevel", 4.35);
             } else {
 				console.log('Error: '  + response.getMessage());
 			}

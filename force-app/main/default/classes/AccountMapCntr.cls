@@ -18,7 +18,7 @@ public class AccountMapCntr {
             geoLocAccDetails.Latitude = aRecord.GeoLocation__Latitude__s;
             geoLocAccDetails.Longitude = aRecord.GeoLocation__Longitude__s;
             Location locDetails = new Location();
-            locDetails.icon = 'utility:activity';
+            locDetails.icon = 'standard:account';
             locDetails.title = aRecord.Name;
             locDetails.location = geoLocAccDetails;
             allAccountLocations.add(locDetails);
