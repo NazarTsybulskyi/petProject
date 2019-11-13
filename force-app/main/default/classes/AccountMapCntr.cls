@@ -23,7 +23,6 @@ public class AccountMapCntr {
             locDetails.location = geoLocAccDetails;
             allAccountLocations.add(locDetails);
         }
-        System.debug('location list: ' + allAccountLocations);
         return allAccountLocations;
     
     }
