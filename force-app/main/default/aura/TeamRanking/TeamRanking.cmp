@@ -13,6 +13,7 @@
            columns="{!v.teamColumns}"
            keyField="id"
            hideCheckboxColumn="true"
+           showRowNumberColumn="false"
     />
-    </div>
+</div>
 </aura:component>	

@@ -5,10 +5,11 @@ public class CurrentTeamRankingCntr  {
 	    Account currentTeam = [SELECT Id, Name, Conference__c
 		                       FROM Account
 							   WHERE Id =: recordId];
-		List<Account> allConfTeams = [SELECT Name, Conference__c, Division__c, W__c, L__c, PCT__c
-                                   FROM Account
-								   WHERE Conference__c =: currentTeam.Conference__c 
-								   ORDER BY PCT__C DESC];
+		List<Account> allConfTeams = [SELECT Name, Conference__c, Division__c, W__c, L__c, PCT__c, 
+		                             Current_Conference_Position__c, Current_Division_Position__c
+                                     FROM Account
+								     WHERE Conference__c =: currentTeam.Conference__c 
+								     ORDER BY PCT__C DESC];
         return allConfTeams;
 	}
 
@@ -17,10 +18,11 @@ public class CurrentTeamRankingCntr  {
 	    Account currentTeam = [SELECT Id, Name, Conference__c
 		                       FROM Account
 							   WHERE Id =: recordId];
-		List<Account> allDivTeams = [SELECT Name, Conference__c, Division__c, W__c, L__c, PCT__c
-                                   FROM Account
-								   WHERE Division__c =: currentTeam.Division__c 
-								   ORDER BY PCT__C DESC];
+		List<Account> allDivTeams = [SELECT Name, Conference__c, Division__c, W__c, L__c, PCT__c, 
+		                             Current_Conference_Position__c, Current_Division_Position__c
+                                    FROM Account
+								    WHERE Division__c =: currentTeam.Division__c 
+								    ORDER BY PCT__C DESC];
         return allDivTeams;
 	}
 
