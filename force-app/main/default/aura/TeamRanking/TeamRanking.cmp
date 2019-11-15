@@ -1,5 +1,5 @@
 <aura:component controller="CurrentTeamRankingCntr"
-                implements="force:hasRecordId, flexipage:availableForAllPageTypes, force:appHostable"
+                implements="force:hasRecordId,flexipage:availableForAllPageTypes,force:appHostable"
                 access="global">
 <aura:attribute name="confTeams" type="Account[]" />
 <aura:attribute name="divTeams" type="Account[]" />
@@ -16,4 +16,4 @@
            showRowNumberColumn="false"
     />
 </div>
-</aura:component>	
+</aura:component>

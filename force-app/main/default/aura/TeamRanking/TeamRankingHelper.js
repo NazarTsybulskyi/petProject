@@ -6,7 +6,6 @@
         });
         getConfTeamListAction.setCallback(this, function(response){
             if (response.getState() == "SUCCESS"){
-                console.log('teamList = ', response.getReturnValue());
                 component.set("v.confTeams", response.getReturnValue());   
             } else {
 			    console.log("Response state: " + response.getState());
