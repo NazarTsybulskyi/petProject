@@ -35,23 +35,6 @@ public class BuildingSelectOptionCntr {
 		insert buildingOptionsList;
 	}
 	
-	@AuraEnabled
-	public static void addBuildingOptionsLwc(String parentId, List<Product2> selectedProducts) {
-
-		Building__c parentBuilding = [SELECT Name, Type__c FROM Building__c
-		                             WHERE Id =: parentId];
-		List<Building_Option__c> buildingOptionsList = new List<Building_Option__c>();
-
-		for (Product2 prodRecord : selectedProducts) {
-		    buildingOptionsList.add(new Building_Option__c(
-			                        Name =  parentBuilding.Name + '_' + prodRecord.Id,
-									Product2__c = prodRecord.Id,
-									Building__c = parentId
-									//Cofinance__c = prodRecord.coFinanceSelected
-									));									 
-		}
-		System.debug('list to insert = ' + buildingOptionsList);
-		insert buildingOptionsList;
-	}
+	
   
 }
